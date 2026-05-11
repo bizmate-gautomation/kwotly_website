@@ -1,0 +1,9 @@
+# Local config with secrets (commit config.example.js instead)
+config.js
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/

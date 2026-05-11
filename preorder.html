@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kwotly · הצטרפות לרשימת המתנה ורכישה מוקדמת</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 549 428'><path d='M0 114.5L137.5 252.5H294L158 114.5H0Z' fill='%233B8FFF'/><path d='M138 253L387.872 0H549L299.128 253H138Z' fill='%231B5FFF'/><path d='M222.5 328.5L297.5 253L453 428H270L222.5 328.5Z' fill='%233B8FFF'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Heebo:wght@300;400;500;700&family=Geist+Mono:wght@400;500&display=swap" />
+    <style>
+      :root {
+        --ink: #0B0B14;
+        --ink-2: rgba(11, 11, 20, 0.65);
+        --bg: #F4F4F2;
+        --brand: #1B3DFF;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: 'Heebo', 'Manrope', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        direction: rtl;
+      }
+
+      .stage { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+      nav { padding-top: 24px; }
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 10px 28px 10px 18px;
+        border-radius: 999px;
+        background: #ffffff;
+        border: 1px solid rgba(11, 11, 20, 0.06);
+        box-shadow: 0 12px 28px -18px rgba(20, 20, 40, 0.18), 0 4px 10px -6px rgba(20, 20, 40, 0.08);
+      }
+      .nav-bar .links {
+        display: flex;
+        gap: 24px;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(11,11,20,0.78);
+      }
+      .nav-bar .links a {
+        color: inherit;
+        text-decoration: none;
+        padding: 6px 4px;
+      }
+      .nav-bar .links a:hover { color: var(--ink); }
+      .nav-bar .spacer { flex: 1; }
+      .nav-bar .logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 64px auto 0;
+        padding: 0 32px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      @media (max-width: 920px) {
+        main { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
+      }
+
+      .lead h1 {
+        font-size: clamp(34px, 4.5vw, 52px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        margin: 0 0 12px;
+      }
+      .lead h1 em {
+        font-style: normal;
+        background: linear-gradient(90deg, #1B3DFF, #6B8BFF 60%, #FF6A3D);
+        -webkit-background-clip: text;
+                background-clip: text;
+        color: transparent;
+      }
+      .updated {
+        font-family: 'Geist Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--ink-2);
+        margin-bottom: 28px;
+        text-transform: uppercase;
+      }
+      .intro { color: var(--ink-2); font-size: 17px; margin: 0 0 24px; }
+
+      .agreement {
+        background: #ffffff;
+        border: 1px solid rgba(11, 11, 20, 0.06);
+        border-radius: 24px;
+        padding: 28px 32px;
+        box-shadow: 0 18px 40px -28px rgba(20, 30, 80, 0.22);
+      }
+      .agreement h2 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        margin: 24px 0 8px;
+      }
+      .agreement h2:first-child { margin-top: 0; }
+      .agreement p, .agreement li { font-size: 15px; line-height: 1.7; color: var(--ink); }
+      .agreement p { margin: 0 0 10px; }
+      .agreement ul { padding-inline-start: 22px; margin: 0 0 12px; }
+      .agreement li { margin-bottom: 6px; }
+      .agreement .parties {
+        background: #F7F6F4;
+        border-radius: 14px;
+        padding: 14px 18px;
+        margin: 0 0 18px;
+        font-size: 14px;
+      }
+      .agreement .parties b { font-weight: 700; }
+      .agreement .fineprint {
+        font-size: 12px;
+        color: var(--ink-2);
+        margin: 4px 0 0;
+        font-style: italic;
+      }
+
+      /* form card */
+      .form-card {
+        position: sticky;
+        top: 24px;
+        background: #ffffff;
+        border: 1px solid rgba(11, 11, 20, 0.06);
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 24px 50px -26px rgba(20, 30, 80, 0.25);
+      }
+      .form-card h3 {
+        margin: 0 0 6px;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .form-card .sub {
+        color: var(--ink-2);
+        font-size: 14px;
+        margin: 0 0 18px;
+      }
+      .perks {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 14px 16px;
+        background: #F7F6F4;
+        border-radius: 14px;
+      }
+      .perk {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 13px;
+        color: var(--ink);
+      }
+      .perk svg { flex: 0 0 16px; color: #1B5FFF; margin-top: 3px; }
+
+      form { display: flex; flex-direction: column; gap: 12px; }
+      label {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(11,11,20,0.62);
+        margin-bottom: -6px;
+      }
+      input[type="text"], input[type="email"], input[type="tel"] {
+        font-family: inherit;
+        font-size: 15px;
+        padding: 12px 14px;
+        border: 1px solid rgba(11,11,20,0.12);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        width: 100%;
+      }
+      input:focus {
+        border-color: #1B5FFF;
+        box-shadow: 0 0 0 3px rgba(27,95,255,0.12);
+      }
+      .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink);
+        margin: 8px 0 4px;
+        line-height: 1.45;
+      }
+      .check input {
+        margin-top: 3px;
+        accent-color: #1B5FFF;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+      }
+      .check a { color: #1B5FFF; text-decoration: none; }
+      .check a:hover { text-decoration: underline; }
+
+      button.submit {
+        margin-top: 6px;
+        background: linear-gradient(135deg, #1b5fff, #3b8fff);
+        color: white;
+        border: 0;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 15px;
+        font-family: inherit;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+      }
+      button.submit:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px -10px rgba(27,95,255,0.5);
+      }
+      button.submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+      .err {
+        font-size: 13px;
+        color: #c0392b;
+        margin-top: 4px;
+        text-align: center;
+        display: none;
+      }
+      .hint {
+        font-size: 12px;
+        color: rgba(11,11,20,0.5);
+        text-align: center;
+        margin-top: 6px;
+      }
+
+      .success {
+        display: none;
+        text-align: center;
+        padding: 12px 8px;
+      }
+      .success.show { display: block; }
+      .success h3 {
+        font-size: 24px;
+        margin: 14px 0 8px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .success p { color: var(--ink-2); margin: 0; font-size: 15px; }
+
+      footer {
+        max-width: 1180px;
+        margin: 80px auto 40px;
+        padding: 24px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: rgba(11,11,20,0.5);
+        border-top: 1px solid rgba(11,11,20,0.08);
+      }
+      footer .legal { display: flex; gap: 24px; }
+      footer a { color: inherit; text-decoration: none; }
+
+      @media (max-width: 920px) {
+        .nav-bar { justify-content: center; padding: 10px 18px; }
+        .nav-bar .links, .nav-bar .spacer { display: none; }
+        .nav-bar .logo { margin: 0 auto; }
+        .form-card { position: static; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <nav>
+        <div class="nav-bar">
+          <div class="links">
+            <a href="index.html#features">תכונות</a>
+            <a href="index.html#ai-agent">סוכן AI</a>
+            <a class="nav-cta" href="https://wa.me/972534202016" target="_blank" rel="noopener">צור קשר</a>
+          </div>
+          <div class="spacer"></div>
+          <a href="index.html" class="logo">
+            <svg width="146" height="48" viewBox="0 0 1412 464" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+              <path d="M596 91.5C596 104.479 585.479 115 572.5 115C559.521 115 549 104.479 549 91.5C549 78.5213 559.521 68 572.5 68C585.479 68 596 78.5213 596 91.5Z" fill="#1B3DFF"/>
+              <path d="M0 114.5L137.5 252.5H294L158 114.5H0Z" fill="#3B8FFF"/>
+              <path d="M138 253L387.872 0H549L299.128 253H138Z" fill="#1B5FFF"/>
+              <path d="M222.5 328.5L297.5 253L453 428H270L222.5 328.5Z" fill="#3B8FFF"/>
+              <path d="M546.96 132.46H598.76V340.5H546.96V132.46ZM610.52 299.62V240.26L634.88 197.7H689.48L647.48 265.46L690.32 340.5H633.76L610.52 299.62ZM687.848 197.7H738.528L772.408 340.5H726.208L687.848 197.7ZM765.408 260.7L782.768 197.7H824.488L865.928 340.5H820.288L803.768 276.94H800.968L787.528 340.5H784.448L765.408 260.7ZM855.288 261.26L866.768 197.7H916.888L881.328 340.5H878.248L855.288 261.26ZM1005.35 269.38C1005.35 259.86 1005.26 253.513 1005.07 250.34C1004.88 245.86 1004.32 242.5 1003.39 240.26C1002.46 237.833 1000.96 236.34 998.911 235.78C996.671 235.22 993.591 234.94 989.671 234.94H985.751V195.46H989.671C1005.91 195.46 1018.6 196.767 1027.75 199.38C1036.9 201.807 1043.71 205.913 1048.19 211.7C1052.3 216.927 1054.91 223.927 1056.03 232.7C1057.34 241.287 1057.99 253.513 1057.99 269.38C1057.99 284.127 1057.52 295.607 1056.59 303.82C1055.84 311.847 1053.88 318.473 1050.71 323.7C1047.16 329.487 1041.84 333.873 1034.75 336.86C1027.66 339.66 1017.86 341.433 1005.35 342.18V269.38ZM989.671 342.74C973.431 342.74 960.737 341.527 951.591 339.1C942.444 336.673 935.631 332.567 931.151 326.78C927.044 321.553 924.337 314.647 923.031 306.06C921.911 297.473 921.351 285.247 921.351 269.38C921.351 254.82 921.817 243.433 922.751 235.22C923.684 227.007 925.737 220.193 928.911 214.78C932.271 208.807 937.497 204.42 944.591 201.62C951.684 198.633 961.484 196.767 973.991 196.02V269.38C973.991 278.9 974.084 285.153 974.271 288.14C974.457 292.62 975.017 295.98 975.951 298.22C976.884 300.46 978.471 301.86 980.711 302.42C982.577 302.98 985.564 303.26 989.671 303.26H993.591V342.74H989.671ZM1065.1 197.7H1091.42V156.26H1143.22V197.7H1174.58V237.18H1065.1V197.7ZM1091.42 248.38H1143.22V340.5H1091.42V248.38ZM1187.11 132.46H1238.91V340.5H1187.11V132.46ZM1302.98 339.66C1286.18 339.66 1274.89 334.527 1269.1 324.26C1266.49 319.78 1264.72 314.367 1263.78 308.02C1262.85 301.487 1262.38 293.553 1262.38 284.22V197.7H1314.18V262.38C1314.18 272.273 1314.28 278.807 1314.46 281.98C1314.84 286.833 1315.4 290.193 1316.14 292.06C1316.89 294.113 1318.1 295.42 1319.78 295.98C1321.46 296.353 1324.45 296.54 1328.74 296.54H1331.54V331.26C1324.08 336.86 1314.56 339.66 1302.98 339.66ZM1322.3 398.18C1312.6 398.18 1301.21 397.62 1288.14 396.5L1271.9 394.82V358.7H1309.42C1316.14 358.7 1322.68 358.513 1329.02 358.14C1333.5 357.767 1336.77 356.833 1338.82 355.34C1341.06 354.033 1342.37 351.7 1342.74 348.34C1343.12 343.86 1343.3 339.1 1343.3 334.06V197.7H1395.1V324.82C1395.1 339.753 1394.45 351.327 1393.14 359.54C1392.02 367.753 1389.32 374.567 1385.02 379.98C1380.17 386.14 1372.8 390.713 1362.9 393.7C1353.01 396.687 1339.48 398.18 1322.3 398.18Z" fill="#121726"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <main id="main">
+      <!-- LEFT: agreement -->
+      <section class="lead">
+        <h1>הצטרפו לרשימת ההמתנה <em>של Kwotly.</em></h1>
+
+        <article class="agreement">
+          <div class="parties">
+            <p><b>בין:</b> Kwotly (להלן: "החברה")<br/>
+            <b>לבין:</b> המשתמש/ת המשלם (להלן: "הלקוח")</p>
+          </div>
+
+          <h2>1. מהות ההסכם</h2>
+          <p>הלקוח מבצע בזאת רכישה מוקדמת עבור מקום ברשימת ההמתנה וגישה לאפליקציית Kwotly (להלן: "האפליקציה"), הנמצאת כעת בשלבי פיתוח (Pre‑production).</p>
+
+          <h2>2. תשלום, מדיניות ביטולים וזכויות צרכניות</h2>
+          <ul>
+            <li><b>עלות:</b> הלקוח ישלם סכום חד‑פעמי של 379 ש"ח.</li>
+            <li><b>ללא מנוי אוטומטי:</b> תשלום זה אינו מהווה תחילתו של מנוי מתחדש. בסיום חודש ההתנסות החינמי, הלקוח לא יחויב אוטומטית.</li>
+            <li><b>זכות ביטול לפני השקה:</b> כמחווה של רצון טוב ומעבר לדרישות החוק, הלקוח רשאי לבטל את הרכישה ולקבל החזר כספי מלא בכל עת לפני מועד ההשקה הרשמי, ללא דמי ביטול.</li>
+            <li><b>זכות ביטול סטטוטורית:</b> בהתאם לחוק הגנת הצרכן, התשמ"א‑1981, הלקוח רשאי לבטל את העסקה בתוך 14 ימים מיום עשייתה או מיום קבלת מסמך זה (לפי המאוחר), גם אם האפליקציה הושקה בתוך תקופה זו, ובלבד שלא נעשה בשירות שימוש ממשי.</li>
+            <li><b>אי‑החזר לאחר השקה:</b> בכפוף לזכויות הסטטוטוריות המצוינות לעיל, החל ממועד השקת האפליקציה ומתן הגישה ללקוח, דמי ההרשמה יהפכו לסופיים ולא יינתן בגינם החזר כספי.</li>
+            <li><b>לוחות זמנים:</b> הלקוח מודע לכך שאין תאריך השקה רשמי ומחייב, ותהליך הפיתוח נתון לשינויים.</li>
+          </ul>
+
+          <h2>3. ההטבות ללקוח</h2>
+          <p>עם השקת האפליקציה, יקבל הלקוח:</p>
+          <ul>
+            <li><b>חודש שימוש ראשון חינם:</b> גישה מלאה למערכת ללא תשלום דמי מנוי למשך 30 ימים מרגע פתיחת החשבון.</li>
+          </ul>
+          <p class="fineprint">* במהלך חודש ההתנסות החינמי, הלקוח מוגבל ל‑5 הצעות מחיר.</p>
+
+          <h2>4. פיתוח המוצר ושינויים</h2>
+          <p>החברה שומרת לעצמה את הזכות לשנות או להסיר תכונות (Features) ויכולות עד למועד ההשקה ואחריו, בהתאם לאילוצים טכנולוגיים ושיקול דעתה הבלעדי.</p>
+
+          <h2>5. הגבלת אחריות (Beta)</h2>
+          <p>המערכת מסופקת במצבה כפי שהוא (As‑Is). החברה לא תישא באחריות לכל נזק, ישיר או עקיף, הנובע משימוש באפליקציה או מתקלות טכניות בגרסת ההרצה.</p>
+
+          <h2>6. קניין רוחני</h2>
+          <p>כל זכויות היוצרים והקניין הרוחני באפליקציה, לרבות קוד ועיצוב, שייכים לחלוטין לחברה. התשלום מקנה רישיון שימוש אישי בלבד.</p>
+        </article>
+      </section>
+
+      <!-- RIGHT: form -->
+      <aside class="form-card" id="formCard">
+        <h3>הרשמה לרשימת המתנה</h3>
+        <p class="sub">מלאו פרטים, אשרו את ההסכם — ונחזור אליכם.</p>
+
+        <div class="perks">
+          <div class="perk">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            <span>חודש שימוש ראשון חינם עם ההשקה</span>
+          </div>
+          <div class="perk">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            <span>החזר מלא עד מועד ההשקה</span>
+          </div>
+          <div class="perk">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            <span>זכות ביטול סטטוטורית של 14 יום</span>
+          </div>
+        </div>
+
+        <form id="poForm" autocomplete="on" novalidate>
+          <label for="po-name">שם מלא</label>
+          <input id="po-name" name="name" type="text" required placeholder="ישראל ישראלי" autocomplete="name"/>
+
+          <label for="po-email">אימייל</label>
+          <input id="po-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email"/>
+
+          <div class="row2">
+            <div>
+              <label for="po-phone">טלפון</label>
+              <input id="po-phone" name="phone" type="tel" required placeholder="050‑0000000" autocomplete="tel"/>
+            </div>
+            <div>
+              <label for="po-id">ת.ז. / עוסק</label>
+              <input id="po-id" name="idnum" type="text" placeholder="123456789" inputmode="numeric"/>
+            </div>
+          </div>
+
+          <label for="po-biz">שם עסק (אופציונלי)</label>
+          <input id="po-biz" name="business" type="text" placeholder="שם החברה / העסק"/>
+
+          <label class="check">
+            <input type="checkbox" id="agrCheck" required/>
+            <span>קראתי ואני מאשר/ת את <a href="#main" onclick="document.querySelector('.agreement').scrollIntoView({behavior:'smooth'});return false;">תנאי ההסכם</a> במלואם.</span>
+          </label>
+
+          <button type="submit" class="submit" id="poSubmit" disabled>
+            <span>אישור והרשמה</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="err" id="poError"></div>
+        </form>
+
+        <div class="success" id="poSuccess">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#29826B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+          <h3>תודה שהצטרפת!</h3>
+          <p>קיבלנו את הפרטים שלך. נצור איתך קשר בהמשך עם פרטי תשלום ולוחות הזמנים להשקה.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>© 2026 Kwotly · נעשה בקפידה</div>
+      <div class="legal">
+        <a href="privacy.html">פרטיות</a>
+        <a href="terms.html">תנאים</a>
+        <a href="accessibility-statement.html">נגישות</a>
+        <a href="#">@kwotly</a>
+      </div>
+    </footer>
+
+    <script src="accessibility.js"></script>
+    <!-- Local config (gitignored). Copy config.example.js → config.js and fill in your PAT. -->
+    <script src="config.js"></script>
+    <script>
+      // ── Pre-order signup → Airtable ─────────────────────────────
+      // Reads token + base info from window.KWOTLY_CONFIG (see config.js).
+      const CFG = (window.KWOTLY_CONFIG || {});
+      const AIRTABLE_PAT   = CFG.AIRTABLE_PAT   || "";
+      const AIRTABLE_BASE  = CFG.AIRTABLE_BASE  || "appaFLSkncc2zw6mB";
+      const AIRTABLE_TABLE = CFG.AIRTABLE_TABLE || "Kwotly Pre-orders";
+      const AGREEMENT_VERSION = "V3";
+
+      const form     = document.getElementById('poForm');
+      const success  = document.getElementById('poSuccess');
+      const errBox   = document.getElementById('poError');
+      const submitBtn = document.getElementById('poSubmit');
+      const agrCheck  = document.getElementById('agrCheck');
+
+      agrCheck.addEventListener('change', () => {
+        submitBtn.disabled = !agrCheck.checked;
+      });
+
+      function showError(msg) {
+        errBox.textContent = msg;
+        errBox.style.display = 'block';
+      }
+      function hideError() { errBox.style.display = 'none'; }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError();
+        if (!agrCheck.checked) {
+          showError('יש לאשר את ההסכם כדי להמשיך.');
+          return;
+        }
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const labelSpan = submitBtn.querySelector('span');
+        const origLabel = labelSpan.textContent;
+        labelSpan.textContent = 'שולח…';
+
+        const data = new FormData(form);
+        const payload = {
+          fields: {
+            "Name":              data.get('name')?.toString().trim()    || '',
+            "Email":             data.get('email')?.toString().trim()   || '',
+            "Phone":             data.get('phone')?.toString().trim()   || '',
+            "ID Number":         data.get('idnum')?.toString().trim()   || '',
+            "Business Name":     data.get('business')?.toString().trim() || '',
+            "Agreement Version": AGREEMENT_VERSION,
+            "Agreed At":         new Date().toISOString(),
+            "Source":            location.pathname + (document.referrer ? ' ← ' + document.referrer : ''),
+            "User Agent":        navigator.userAgent || '',
+            "Status":            "New"
+          }
+        };
+
+        try {
+          if (!AIRTABLE_PAT || AIRTABLE_PAT === "REPLACE_ME_WITH_YOUR_PAT") {
+            throw new Error('Airtable PAT not configured. Copy config.example.js → config.js and fill in AIRTABLE_PAT.');
+          }
+          const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(AIRTABLE_TABLE)}`;
+          const resp = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + AIRTABLE_PAT,
+              'Content-Type':  'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          if (!resp.ok) {
+            const text = await resp.text();
+            throw new Error('Airtable ' + resp.status + ': ' + text.slice(0, 200));
+          }
+          form.style.display = 'none';
+          success.classList.add('show');
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          console.error(err);
+          showError('אופס, משהו השתבש. נסה שוב או צור איתנו קשר בוואטסאפ.');
+          labelSpan.textContent = origLabel;
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
