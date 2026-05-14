@@ -305,7 +305,7 @@
 
     <div class="a11y-actions">
       <button type="button" class="a11y-reset" data-action="reset">איפוס הגדרות</button>
-      <a class="a11y-statement" href="accessibility-statement.html">הצהרת נגישות</a>
+      <a class="a11y-statement" href="/accessibility-statement/">הצהרת נגישות</a>
     </div>
   `;
 

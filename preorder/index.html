@@ -294,12 +294,12 @@
       <nav>
         <div class="nav-bar">
           <div class="links">
-            <a href="index.html#features">תכונות</a>
-            <a href="index.html#ai-agent">סוכן AI</a>
+            <a href="/#features">תכונות</a>
+            <a href="/#ai-agent">סוכן AI</a>
             <a class="nav-cta" href="https://wa.me/972534202016" target="_blank" rel="noopener">צור קשר</a>
           </div>
           <div class="spacer"></div>
-          <a href="index.html" class="logo">
+          <a href="/" class="logo">
             <svg width="146" height="48" viewBox="0 0 1412 464" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
               <path d="M596 91.5C596 104.479 585.479 115 572.5 115C559.521 115 549 104.479 549 91.5C549 78.5213 559.521 68 572.5 68C585.479 68 596 78.5213 596 91.5Z" fill="#1B3DFF"/>
               <path d="M0 114.5L137.5 252.5H294L158 114.5H0Z" fill="#3B8FFF"/>
@@ -317,7 +317,7 @@
       <section class="lead">
         <h1>הצטרפו לרשימת ההמתנה <em>של Kwotly.</em></h1>
 
-        <article class="agreement">
+        <article class="agreement" id="agreementBlock" style="display:none">
           <div class="parties">
             <p><b>בין:</b> Kwotly (להלן: "החברה")<br/>
             <b>לבין:</b> המשתמש/ת המשלם (להלן: "הלקוח")</p>
@@ -351,6 +351,14 @@
 
           <h2>6. קניין רוחני</h2>
           <p>כל זכויות היוצרים והקניין הרוחני באפליקציה, לרבות קוד ועיצוב, שייכים לחלוטין לחברה. התשלום מקנה רישיון שימוש אישי בלבד.</p>
+
+          <h2>7. פרטיות ותקשורת שיווקית</h2>
+          <p>הלקוח מאשר כי קרא והבין את <a href="/privacy/" target="_blank" rel="noopener">מדיניות הפרטיות</a> של החברה ומסכים לאופן איסוף, שמירה ועיבוד הנתונים המתואר בה. תקשורת תפעולית (אישור תשלום, עדכוני סטטוס, קבלות, פרטי גישה לאפליקציה) תישלח ללא צורך באישור נוסף, בהתאם לחוק התקשורת (בזק ושידורים), התשמ"ב‑1982. תקשורת שיווקית תישלח רק אם הלקוח אישר זאת במפורש.</p>
+
+          <h2>8. חתימה דיגיטלית</h2>
+          <p>בלחיצה על "אישור והרשמה" אני מאשר/ת כי קראתי, הבנתי וקיבלתי את כל תנאי הסכם זה במלואו, וכן מסכים/ה לחיוב הסך של 379 ש"ח. אישור זה מהווה חתימה דיגיטלית מחייבת לכל דבר ועניין, בהתאם לחוק חתימה אלקטרונית, התשס"א‑2001.</p>
+
+          <p class="fineprint">גרסת הסכם: V4 · עודכן: 14/05/2026</p>
         </article>
       </section>
 
@@ -397,7 +405,12 @@
 
           <label class="check">
             <input type="checkbox" id="agrCheck" required/>
-            <span>קראתי ואני מאשר/ת את <a href="#main" onclick="document.querySelector('.agreement').scrollIntoView({behavior:'smooth'});return false;">תנאי ההסכם</a> במלואם.</span>
+            <span>קראתי ואני מאשר/ת את <a href="#agreementBlock" onclick="var a=document.getElementById('agreementBlock');a.style.display='block';a.scrollIntoView({behavior:'smooth'});return false;">תנאי ההסכם</a> במלואם.</span>
+          </label>
+
+          <label class="check" style="margin-top:0">
+            <input type="checkbox" id="marketingCheck"/>
+            <span>אני מאשר/ת לקבל עדכונים שיווקיים מ-Kwotly באימייל וב-SMS.</span>
           </label>
 
           <button type="submit" class="submit" id="poSubmit" disabled>
@@ -414,15 +427,22 @@
           <h3>תודה שהצטרפת!</h3>
           <p>קיבלנו את הפרטים שלך. נצור איתך קשר בהמשך עם פרטי תשלום ולוחות הזמנים להשקה.</p>
         </div>
+
+        <div id="paymentWrap" style="display:none;text-align:center;padding:20px 8px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1B5FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <h3 style="margin:0 0 8px">מעבירים אותך לתשלום…</h3>
+          <p class="sub" style="margin:0 0 14px">אם הדף לא נטען אוטומטית, לחצו על הכפתור.</p>
+          <a id="paymentLink" href="#" target="_blank" rel="noopener" class="submit" style="text-decoration:none;display:inline-flex">המשך לתשלום ←</a>
+        </div>
       </aside>
     </main>
 
     <footer>
       <div>© 2026 Kwotly · נעשה בקפידה</div>
       <div class="legal">
-        <a href="privacy.html">פרטיות</a>
-        <a href="terms.html">תנאים</a>
-        <a href="accessibility-statement.html">נגישות</a>
+        <a href="/privacy/">פרטיות</a>
+        <a href="/terms/">תנאים</a>
+        <a href="/accessibility-statement/">נגישות</a>
         <a href="#">@kwotly</a>
       </div>
     </footer>
@@ -431,23 +451,46 @@
     <!-- Local config (gitignored). Copy config.example.js → config.js and fill in your PAT. -->
     <script src="config.js"></script>
     <script>
-      // ── Pre-order signup → Airtable ─────────────────────────────
-      // Reads token + base info from window.KWOTLY_CONFIG (see config.js).
+      // ── Pre-order signup → Airtable + Make webhook ──────────────
       const CFG = (window.KWOTLY_CONFIG || {});
       const AIRTABLE_PAT   = CFG.AIRTABLE_PAT   || "";
       const AIRTABLE_BASE  = CFG.AIRTABLE_BASE  || "appaFLSkncc2zw6mB";
       const AIRTABLE_TABLE = CFG.AIRTABLE_TABLE || "Kwotly Pre-orders";
-      const AGREEMENT_VERSION = "V3";
+      const AGREEMENT_VERSION = "V4";
+      const MAKE_WEBHOOK     = 'https://hook.eu1.make.com/gcybe6kaa65shickbfqi26rya2omgaru';
+      const APPROVAL_WEBHOOK = 'https://hook.eu1.make.com/st1iqetqqfti6lmis238nnizduiwuq9b?record_id=';
 
-      const form     = document.getElementById('poForm');
-      const success  = document.getElementById('poSuccess');
-      const errBox   = document.getElementById('poError');
-      const submitBtn = document.getElementById('poSubmit');
-      const agrCheck  = document.getElementById('agrCheck');
+      const form          = document.getElementById('poForm');
+      const success       = document.getElementById('poSuccess');
+      const errBox        = document.getElementById('poError');
+      const submitBtn     = document.getElementById('poSubmit');
+      const agrCheck      = document.getElementById('agrCheck');
+      const marketingCheck = document.getElementById('marketingCheck');
 
       agrCheck.addEventListener('change', () => {
         submitBtn.disabled = !agrCheck.checked;
       });
+
+      // ── URL prefill (?name=…&email=…&phone=…&id=…&business=…) ─
+      const params = new URLSearchParams(location.search);
+      const prefillMap = {
+        'name':     'po-name',
+        'email':    'po-email',
+        'phone':    'po-phone',
+        'id':       'po-id',
+        'business': 'po-biz'
+      };
+      Object.entries(prefillMap).forEach(([param, inputId]) => {
+        const value = params.get(param);
+        if (value) document.getElementById(inputId).value = value;
+      });
+
+      // ── IP capture (best-effort, non-blocking) ──────────────────
+      let clientIP = '';
+      fetch('https://api.ipify.org?format=json')
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (d && d.ip) clientIP = d.ip; })
+        .catch(() => {});
 
       function showError(msg) {
         errBox.textContent = msg;
@@ -473,24 +516,30 @@
         labelSpan.textContent = 'שולח…';
 
         const data = new FormData(form);
+        const nowIso = new Date().toISOString();
+        const marketingOk = marketingCheck.checked;
         const payload = {
           fields: {
-            "Name":              data.get('name')?.toString().trim()    || '',
-            "Email":             data.get('email')?.toString().trim()   || '',
-            "Phone":             data.get('phone')?.toString().trim()   || '',
-            "ID Number":         data.get('idnum')?.toString().trim()   || '',
-            "Business Name":     data.get('business')?.toString().trim() || '',
-            "Agreement Version": AGREEMENT_VERSION,
-            "Agreed At":         new Date().toISOString(),
-            "Source":            location.pathname + (document.referrer ? ' ← ' + document.referrer : ''),
-            "User Agent":        navigator.userAgent || '',
-            "Status":            "New"
+            "Name":                 data.get('name')?.toString().trim()    || '',
+            "Email":                data.get('email')?.toString().trim()   || '',
+            "Phone":                data.get('phone')?.toString().trim()   || '',
+            "ID Number":            data.get('idnum')?.toString().trim()   || '',
+            "Business Name":        data.get('business')?.toString().trim() || '',
+            "Agreement Version":    AGREEMENT_VERSION,
+            "Agreement URL":        `${location.origin}/agreements/${AGREEMENT_VERSION.toLowerCase()}/`,
+            "Agreed At":            nowIso,
+            "Source":               location.pathname + (document.referrer ? ' ← ' + document.referrer : ''),
+            "User Agent":           navigator.userAgent || '',
+            "IP Address":           clientIP,
+            "Marketing Consent":    marketingOk,
+            "Marketing Consent At": marketingOk ? nowIso : '',
+            "Status":               "New"
           }
         };
 
         try {
           if (!AIRTABLE_PAT || AIRTABLE_PAT === "REPLACE_ME_WITH_YOUR_PAT") {
-            throw new Error('Airtable PAT not configured. Copy config.example.js → config.js and fill in AIRTABLE_PAT.');
+            throw new Error('Airtable PAT not configured. Edit config.js and fill in AIRTABLE_PAT.');
           }
           const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(AIRTABLE_TABLE)}`;
           const resp = await fetch(url, {
@@ -505,9 +554,41 @@
             const text = await resp.text();
             throw new Error('Airtable ' + resp.status + ': ' + text.slice(0, 200));
           }
+          const created = await resp.json();
+          const recordId = created.id || '';
+
+          const makePayload = {
+            full_name:    data.get('name')?.toString().trim()     || '',
+            email:        data.get('email')?.toString().trim()    || '',
+            phone_number: data.get('phone')?.toString().trim()    || '',
+            company_name: data.get('business')?.toString().trim() || '',
+            id:           data.get('idnum')?.toString().trim()    || '',
+            record_id:    recordId,
+            ip_address:   clientIP,
+            marketing_consent: marketingOk,
+            link_for_approval: APPROVAL_WEBHOOK + recordId
+          };
+          const makeResp = await fetch(MAKE_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(makePayload)
+          });
+          if (!makeResp.ok) {
+            const text = await makeResp.text();
+            throw new Error('Make ' + makeResp.status + ': ' + text.slice(0, 200));
+          }
+          const makeData = await makeResp.json();
+          const paymentLink = makeData.payment_link;
+          if (!paymentLink) throw new Error('No payment_link in Make response');
+
           form.style.display = 'none';
-          success.classList.add('show');
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          document.querySelector('.form-card .perks').style.display = 'none';
+          document.querySelector('.form-card > h3').style.display = 'none';
+          document.querySelector('.form-card > .sub').style.display = 'none';
+          document.getElementById('paymentLink').href = paymentLink;
+          document.getElementById('paymentWrap').style.display = 'block';
+          document.getElementById('paymentWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.open(paymentLink, '_blank', 'noopener');
         } catch (err) {
           console.error(err);
           showError('אופס, משהו השתבש. נסה שוב או צור איתנו קשר בוואטסאפ.');
