@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Heebo:wght@300;400;500;700&family=Geist+Mono:wght@400;500&display=swap"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
         --brand: #1B3DFF;
@@ -698,9 +699,7 @@
       /* app showcase */
       .app-showcase {
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 64px;
-        align-items: center;
+        place-items: center;
       }
       .app-bullets {
         list-style: none;
@@ -741,9 +740,50 @@
       }
 
       .phone-wrap {
-        display: grid;
-        place-items: center;
+        /* Outer box takes the SCALED dimensions so the wrap is centerable
+           and never overflows the section padding on small viewports. */
+        --phone-scale: 1;
         position: relative;
+        width: calc(391px * var(--phone-scale));
+        height: calc(828px * var(--phone-scale));
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .phone-frame {
+        width: 391px;           /* 375 + 8px bezel each side */
+        height: 828px;          /* 812 + 8px bezel each side */
+        background: #0B0B14;
+        border-radius: 52px;
+        padding: 8px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(var(--phone-scale));
+        transform-origin: top left;
+        box-shadow:
+          0 0 0 1px rgba(255,255,255,0.04) inset,
+          0 36px 80px -30px rgba(20, 30, 80, 0.45),
+          0 14px 32px -10px rgba(20, 30, 80, 0.25);
+      }
+      .phone-iframe {
+        width: 375px;
+        height: 812px;
+        border: none;
+        background: var(--paper);
+        display: block;
+        border-radius: 44px;
+      }
+      /* Scale the whole phone down to fit smaller viewports. The wrap
+         shrinks with it so the bezel stays centered, not clipped. */
+      @media (max-width: 480px) {
+        .phone-wrap { --phone-scale: 0.82; }
+      }
+      @media (max-width: 380px) {
+        .phone-wrap { --phone-scale: 0.72; }
+      }
+      @media (max-width: 340px) {
+        .phone-wrap { --phone-scale: 0.62; }
       }
       .phone {
         position: relative;
@@ -929,7 +969,7 @@
             <a href="#app">אפליקציה</a>
             <a href="#ai-agent">סוכן AI</a>
             <a href="#preorder">הצטרפות</a>
-            <a class="nav-cta" href="https://wa.me/972534202016" target="_blank" rel="noopener">צור קשר</a>
+            <a class="nav-cta" href="https://wa.me/972533714701" target="_blank" rel="noopener">צור קשר</a>
           </div>
           <div class="spacer"></div>
           <a href="#" class="logo" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center">
@@ -950,7 +990,7 @@
           <h1>ההצעה הבאה שלך,<br/><em>בדקות.</em></h1>
           <p class="hero-sub">מעלים כתב כמויות וה‑AI ממלא את המחירים מתוך מחירון חכם שמותאם בדיוק אליכם, או בונים הצעה מאפס מתוך וידאו, אודיו או טקסט שמתאר את הפרויקט. ההצעה יוצאת במיתוג שלכם, נשלחת מתוך האפליקציה, ואתם עוקבים אחרי החתימה בזמן אמת.</p>
           <div class="hero-cta">
-            <a href="https://wa.me/972534202016" target="_blank" rel="noopener" class="btn-primary">צור קשר<span class="arrow">←</span></a>
+            <a href="https://wa.me/972533714701" target="_blank" rel="noopener" class="btn-primary">צור קשר<span class="arrow">←</span></a>
           </div>
         </div>
 
@@ -1005,7 +1045,9 @@
         <div class="features">
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+              <svg width="22" height="22" viewBox="0 0 18.0001 15.0001" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.00011 13H17.0001M5.00011 11L2.50011 14L1.00011 13M8.00011 8.00003H17.0001M5.00011 6.00003L2.50011 9.00003L1.00011 8.00003M8.00011 3.00003H17.0001M5.00011 1.00003L2.50011 4.00003L1.00011 3.00003"/>
+              </svg>
             </div>
             <div>
               <h3>כתב כמויות שמתמלא לבד</h3>
@@ -1014,7 +1056,9 @@
           </div>
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>
+              <svg width="22" height="22" viewBox="0 0 14.0002 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19H10M7 1C3.68629 1 1 3.68629 1 7C1 8.2145 1.36084 9.34472 1.98117 10.2893C2.93507 11.7418 3.41161 12.4676 3.47352 12.5761C4.02428 13.541 3.92287 13.2007 3.99219 14.3096C3.99998 14.4342 4 14.6229 4 15C4 15.5523 4.44772 16 5 16L9 16C9.55229 16 10 15.5523 10 15C10 14.6229 10 14.4342 10.0078 14.3096C10.0771 13.2007 9.97511 13.541 10.5259 12.5761C10.5878 12.4676 11.0651 11.7418 12.019 10.2893C12.6394 9.34472 13.0002 8.2145 13.0002 7C13.0002 3.68629 10.3137 1 7 1Z"/>
+              </svg>
             </div>
             <div>
               <h3>הצעה מאפס — מווידאו, אודיו או טקסט</h3>
@@ -1023,7 +1067,9 @@
           </div>
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M5 8h14v12H5z"/><path d="M9 4h6v4H9z"/></svg>
+              <svg width="22" height="22" viewBox="0 0 19.7885 19.7882" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.62808 11.1601L13.4742 6.31394M18.4316 3.35642L14.341 16.651C13.9744 17.8424 13.7909 18.4384 13.4748 18.636C13.2005 18.8074 12.861 18.836 12.5623 18.7121C12.2178 18.5692 11.9383 18.011 11.3807 16.8957L8.7897 11.7138C8.70121 11.5369 8.65692 11.4487 8.59781 11.372C8.54535 11.304 8.48482 11.2427 8.41677 11.1902C8.34183 11.1325 8.25518 11.0891 8.08609 11.0046L2.89224 8.40769C1.77693 7.85003 1.21923 7.57095 1.07632 7.22653C0.952384 6.92784 0.980649 6.58797 1.15201 6.31372C1.34959 5.99748 1.94555 5.81377 3.13736 5.44706L16.4319 1.35642C17.3689 1.06812 17.8376 0.924089 18.1541 1.04027C18.4297 1.14148 18.647 1.35859 18.7482 1.63425C18.8644 1.95057 18.7202 2.41901 18.4322 3.35503L18.4316 3.35642Z"/>
+              </svg>
             </div>
             <div>
               <h3>שליחה במיתוג שלכם, מעקב חתימה בזמן אמת</h3>
@@ -1032,7 +1078,10 @@
           </div>
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+              <svg width="22" height="22" viewBox="0 0 18.0586 18.0594" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.38323 4.27985L1.052 7.9233C1.00294 8.46289 0.978208 8.73496 1.02312 8.99322C1.06324 9.22398 1.14337 9.44603 1.26027 9.64899C1.39161 9.87701 1.58574 10.0711 1.97178 10.4572L7.14728 15.6327C7.93432 16.4197 8.32805 16.8135 8.78327 16.9614C9.18496 17.0919 9.61835 17.0922 10.02 16.9617C10.4767 16.8133 10.8735 16.4169 11.6655 15.6249L15.6253 11.6651C16.4174 10.8731 16.8127 10.4772 16.9611 10.0206C17.0916 9.61888 17.0909 9.18597 16.9603 8.78429C16.812 8.32763 16.4172 7.93187 15.6252 7.13984L10.4624 1.97711C10.0729 1.58755 9.87801 1.39274 9.64895 1.2608C9.44599 1.1439 9.22394 1.06343 8.99318 1.0233C8.73275 0.978021 8.45828 1.00292 7.90962 1.0528L4.2798 1.38278C3.33504 1.46867 2.86237 1.5118 2.4927 1.71737C2.16677 1.89861 1.89808 2.1673 1.71684 2.49323C1.5123 2.86105 1.46963 3.33038 1.3846 4.26574L1.38323 4.27985Z"/>
+                <path d="M6.3479 6.34779C6.73843 5.95727 6.73843 5.3241 6.3479 4.93358C5.95738 4.54306 5.32376 4.54306 4.93324 4.93358C4.54271 5.3241 4.54234 5.95712 4.93286 6.34764C5.32339 6.73817 5.95738 6.73832 6.3479 6.34779Z"/>
+              </svg>
             </div>
             <div>
               <h3>מחירון חי — ומחירון מותאם אישית</h3>
@@ -1041,7 +1090,9 @@
           </div>
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l-2-3M21 17H8l2 3"/><circle cx="6" cy="7" r="2"/><circle cx="18" cy="17" r="2"/></svg>
+              <svg width="22" height="22" viewBox="0 0 19.2189 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.60943 5H5.32037C4.3573 5 3.87597 5 3.48541 5.17521C3.14114 5.32965 2.84784 5.57838 2.6389 5.89258C2.40187 6.24902 2.32219 6.72386 2.16386 7.67383L1.23053 13.2738L1.23015 13.2759C1.01671 14.5565 0.909937 15.1972 1.09538 15.6965C1.2582 16.1348 1.57001 16.5022 1.97564 16.7349C2.43787 17 3.08719 17 4.38678 17H14.8318C16.1314 17 16.7818 17 17.244 16.7349C17.6497 16.5022 17.9607 16.1348 18.1235 15.6965C18.3089 15.1974 18.2022 14.557 17.9889 13.2774L17.9881 13.2738L17.0547 7.67383C16.8964 6.72386 16.8172 6.24902 16.5801 5.89258C16.3712 5.57838 16.0777 5.32965 15.7334 5.17521C15.3428 5 14.8618 5 13.8988 5H13.6094M5.60943 5H13.6094M5.60943 5C5.60943 2.79086 7.40029 1 9.60943 1C11.8186 1 13.6094 2.79086 13.6094 5"/>
+              </svg>
             </div>
             <div>
               <h3>הזמנות לספקים ישירות מההצעה</h3>
@@ -1050,7 +1101,9 @@
           </div>
           <div class="feature">
             <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4l5 2v5c0 3.5-2.3 6.3-5 7-2.7-.7-5-3.5-5-7V6l5-2z"/></svg>
+              <svg width="22" height="22" viewBox="0 0 20 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 15.9999C19 14.2583 17.3304 12.7767 15 12.2275M13 16C13 13.7909 10.3137 12 7 12C3.68629 12 1 13.7909 1 16M13 9C15.2091 9 17 7.20914 17 5C17 2.79086 15.2091 1 13 1M7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5C11 7.20914 9.20914 9 7 9Z"/>
+              </svg>
             </div>
             <div>
               <h3>מעקב לקוחות ופרויקטים במקום אחד</h3>
@@ -1067,97 +1120,15 @@
           <p>יוצרים הצעה, שולחים ללקוח, חותמים ומזמינים מהספקים — בלי לחזור למשרד ובלי אקסל. כל לקוח, כל הצעה וכל פרויקט במקום אחד.</p>
         </div>
         <div class="app-showcase">
-          <ul class="app-bullets">
-            <li>
-              <div class="bullet-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
-              </div>
-              <div>
-                <strong>הצעות וכתבי כמויות בשניות</strong>
-                <p>מעלים, מקליטים או מקלידים — הסוכן בונה את ההצעה עם תמחור מהמחירון האישי שלכם.</p>
-              </div>
-            </li>
-            <li>
-              <div class="bullet-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l4 4L21 4"/><circle cx="8" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-              </div>
-              <div>
-                <strong>שליחה ללקוח · חתימה דיגיטלית</strong>
-                <p>שולחים בלינק אחד במיתוג שלכם, רואים מתי הלקוח פתח, מתי חתם — ומקבלים פינג ברגע שזה קורה.</p>
-              </div>
-            </li>
-            <li>
-              <div class="bullet-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l-2-3M21 17H8l2 3"/><circle cx="6" cy="7" r="2"/><circle cx="18" cy="17" r="2"/></svg>
-              </div>
-              <div>
-                <strong>הזמנות לספקים בלחיצה</strong>
-                <p>ברגע שהצעה מאושרת — מזמינים חומרים מהספקים שלכם ישירות מהאפליקציה, עם מחירים מומלצים והיסטוריה.</p>
-              </div>
-            </li>
-            <li>
-              <div class="bullet-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4l5 2v5c0 3.5-2.3 6.3-5 7-2.7-.7-5-3.5-5-7V6l5-2z"/></svg>
-              </div>
-              <div>
-                <strong>דשבורד אחד לכל הלקוחות והפרויקטים</strong>
-                <p>סטטוס פתיחה, חתימה, הזמנות לספקים והתקדמות בשטח — בלוח אחד, בלי וואטסאפים מפוזרים.</p>
-              </div>
-            </li>
-          </ul>
           <div class="phone-wrap">
-            <div class="phone-chip c1"><span class="dot"></span>נחתם · לפני 2 דקות</div>
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="phone-top">
-                  <div class="greet">שלום, איתי<small>3 הצעות בהמתנה</small></div>
-                  <div class="bell">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
-                  </div>
-                </div>
-                <div class="phone-tabs">
-                  <span class="active">הכל</span>
-                  <span>טיוטה</span>
-                  <span>נשלח</span>
-                  <span>אושר</span>
-                </div>
-                <div class="offer-card">
-                  <div class="head">
-                    <span class="title">שיפוץ דירה · רמת גן</span>
-                    <span class="status signed">אושר</span>
-                  </div>
-                  <div class="meta">4 חד׳ · 110 מ״ר · משפ׳ לוי</div>
-                  <div class="foot">
-                    <span class="kind">כתב כמויות</span>
-                    <span class="price">₪148,900</span>
-                  </div>
-                </div>
-                <div class="offer-card">
-                  <div class="head">
-                    <span class="title">גג ואיטום · צפון גגות</span>
-                    <span class="status sent">נשלח</span>
-                  </div>
-                  <div class="meta">220 מ״ר · ביטומן + איטום תרמי</div>
-                  <div class="foot">
-                    <span class="kind">הצעת מחיר</span>
-                    <span class="price">₪78,050</span>
-                  </div>
-                </div>
-                <div class="offer-card">
-                  <div class="head">
-                    <span class="title">סטודיו ברייטלאין</span>
-                    <span class="status draft">טיוטה</span>
-                  </div>
-                  <div class="meta">ספרינט מיתוג · 3 שלבים</div>
-                  <div class="foot">
-                    <span class="kind">הצעת מחיר</span>
-                    <span class="price">₪26,500</span>
-                  </div>
-                </div>
-                <div class="phone-fab">+ הצעה חדשה</div>
-              </div>
+            <div class="phone-frame">
+              <iframe
+                src="/app-demo/"
+                class="phone-iframe"
+                title="Kwotly App Demo"
+                loading="lazy"
+              ></iframe>
             </div>
-            <div class="phone-chip c2"><span class="dot"></span>הזמנה נשלחה לספק</div>
           </div>
         </div>
       </section>
